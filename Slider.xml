@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!--Exported from Orchard-->
+<Orchard>
+  <Recipe>
+    <ExportUtc>2017-06-02T08:06:41.7842347Z</ExportUtc>
+  </Recipe>
+  <ContentDefinition>
+    <Types>
+      <Slider ContentTypeSettings.Creatable="False" ContentTypeSettings.Draftable="False" ContentTypeSettings.Listable="True" ContentTypeSettings.Securable="False" TypeIndexing.Indexes="" ContentTypeLayoutSettings.Placeable="True" DisplayName="Slider" ContentTypeSettings.Placement.Editor="[{&quot;ShapeType&quot;:&quot;Parts_Title_Edit&quot;,&quot;Zone&quot;:&quot;Content&quot;,&quot;Position&quot;:&quot;1&quot;,&quot;Differentiator&quot;:null},{&quot;ShapeType&quot;:&quot;Fields_Common_Text_Edit&quot;,&quot;Zone&quot;:&quot;Content&quot;,&quot;Position&quot;:&quot;2&quot;,&quot;Differentiator&quot;:&quot;Css&quot;},{&quot;ShapeType&quot;:&quot;Fields_MediaLibraryPicker_Edit&quot;,&quot;Zone&quot;:&quot;Content&quot;,&quot;Position&quot;:&quot;3&quot;,&quot;Differentiator&quot;:&quot;Images&quot;},{&quot;ShapeType&quot;:&quot;Fields_Numeric_Edit&quot;,&quot;Zone&quot;:&quot;Content&quot;,&quot;Position&quot;:&quot;4&quot;,&quot;Differentiator&quot;:&quot;Time&quot;},{&quot;ShapeType&quot;:&quot;Parts_Common_Container_Edit&quot;,&quot;Zone&quot;:&quot;Content&quot;,&quot;Position&quot;:&quot;5&quot;,&quot;Differentiator&quot;:null}]">
+        <CommonPart OwnerEditorSettings.ShowOwnerEditor="False" DateEditorSettings.ShowDateEditor="False" />
+        <IdentityPart />
+        <Slider />
+        <TitlePart />
+      </Slider>
+    </Types>
+    <Parts>
+      <CommonPart ContentPartSettings.Attachable="True" ContentPartSettings.Description="Provides common information about a content item, such as Owner, Date Created, Date Published and Date Modified." ContentPartLayoutSettings.Placeable="True" ContentPartLayoutSettings.Placable="True" />
+      <IdentityPart ContentPartSettings.Attachable="True" ContentPartSettings.Description="Automatically generates a unique identity for the content item, which is required in import/export scenarios where one content item references another." />
+      <Slider ContentPartSettings.Attachable="True">
+        <Css.TextField DisplayName="CSS classes" TextFieldSettings.Hint="Add custom css classes for the slider content." TextFieldSettings.Required="False" TextFieldSettings.Flavor="Large" />
+        <Images.MediaLibraryPickerField DisplayName="Images" MediaLibraryPickerFieldSettings.Required="True" MediaLibraryPickerFieldSettings.Multiple="True" />
+        <Time.NumericField DisplayName="Time in seconds" NumericFieldSettings.Hint="Time in seconds to delay between automatically cycling an image. " NumericFieldSettings.Required="True" NumericFieldSettings.Scale="0" NumericFieldSettings.Minimum="" NumericFieldSettings.Maximum="" />
+      </Slider>
+      <TitlePart ContentPartSettings.Attachable="True" ContentPartSettings.Description="Provides a Title for your content item." ContentPartLayoutSettings.Placeable="True" ContentPartLayoutSettings.Placable="True" />
+    </Parts>
+  </ContentDefinition>
+</Orchard>

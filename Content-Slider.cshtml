@@ -1,0 +1,132 @@
+﻿@{
+    var content = Model.ContentItem.Slider;
+    var images = content.Images;
+    var sliderId = Guid.NewGuid().ToString().Replace("-", "");
+    var slideIdMobile = sliderId + "mb";
+    string sliderClass = content.Css.Value;
+    string time = content.Time.Value + "000";
+    int x = 1;
+}
+@using (Script.Head())
+{
+    <style>
+        .slider {
+            margin-bottom: 0;
+            padding: 0 40px 30px 40px;
+        }
+        .slider .carousel-control {
+            height: 40px;
+            width: 40px;
+            background: none repeat scroll 0 0 #222222;
+            border: 4px solid #FFFFFF;
+            border-radius: 23px 23px 23px 23px;
+            margin-top: 90px;
+        }
+        .slider .carousel-control.right {
+            right: 0;
+        }
+        .slider .carousel-control.left {
+            left: 0;
+        }
+        /* The indicators */
+        .slider .carousel-indicators {
+            right: 50%;
+            top: auto;
+            bottom: -10px;
+            margin-right: -19px;
+        }
+        /* The colour of the indicators */
+        .slider .carousel-indicators li {
+            background: #cecece;
+        }
+        .slider .carousel-indicators .active {
+            background: #428bca;
+        }
+    </style>
+}
+<div id="@sliderId" class="carousel slide @sliderClass slider hidden-xs" data-ride="carousel" data-interval="@time">
+    <ol class="carousel-indicators">
+        <li data-target="#@sliderId" data-slide-to="0" class="active"></li>
+        @for (int i = 4; i < images.MediaParts.Count; i += 4)
+        {
+            <li data-target="#@sliderId" data-slide-to="@x"></li>
+            x++;
+        }
+    </ol>
+    <div class="carousel-inner">
+        <div class="item active">
+            <div class="row">
+                @for (int i = 0; i < 4; i++)
+                {
+                    <div class="col-md-3">
+                        @if (!String.IsNullOrWhiteSpace(images.MediaParts[i].Caption))
+                        {
+                            <a href="@images.MediaParts[i].Caption"><img src="@images.MediaParts[i].MediaUrl" alt="Image" class="img-responsive"></a>
+                        }
+                        else
+                        {
+                            <img src="@images.MediaParts[i].MediaUrl" alt="Image" class="img-responsive" />
+                        }
+                    </div>
+                }
+            </div>
+        </div>
+        @for (int i = 4; i < images.MediaParts.Count - (images.MediaParts.Count % 4); i += 4)
+        {
+            <div class="item">
+                <div class="row">
+                    @for (int j = i; j < i + 4; j++)
+                    {
+                        <div class="col-md-3">
+                            @if (!String.IsNullOrWhiteSpace(images.MediaParts[j].Caption))
+                            {
+                                <a href="@images.MediaParts[j].Caption"><img src="@images.MediaParts[j].MediaUrl" alt="Image" class="img-responsive"></a>
+                            }
+                            else
+                            {
+                                <img src="@images.MediaParts[j].MediaUrl" alt="Image" class="img-responsive" />
+                            }
+                        </div>
+                    }
+                </div>
+            </div>
+        }
+        <div class="item">
+            <div class="row">
+                @for (int j = images.MediaParts.Count - (images.MediaParts.Count % 4); j < images.MediaParts.Count; j++)
+                {
+                    <div class="col-md-3">
+                        @if (!String.IsNullOrWhiteSpace(images.MediaParts[j].Caption))
+                        {
+                            <a href="@images.MediaParts[j].Caption"><img src="@images.MediaParts[j].MediaUrl" alt="Image" class="img-responsive"></a>
+                        }
+                        else
+                        {
+                            <img src="@images.MediaParts[j].MediaUrl" alt="Image" class="img-responsive" />
+                        }
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <a data-slide="prev" href="#@sliderId" class="left carousel-control ">‹</a>
+    <a data-slide="next" href="#@sliderId" class="right carousel-control">›</a>
+</div>
+
+<div id="@slideIdMobile" class="carousel slide @sliderClass slider visible-xs" data-ride="carousel" data-interval="@time">
+    <div class="carousel-inner">
+        @for (int i = 0; i < images.MediaParts.Count; i++)
+        {
+            <div class="item @( i == 0 ? "active" : String.Empty )">
+                @if (!String.IsNullOrWhiteSpace(images.MediaParts[i].Caption))
+				{
+					<a href="@images.MediaParts[i].Caption"><img src="@images.MediaParts[i].MediaUrl" alt="@images.MediaParts[i].AlternateText" class="center-image img-responsive"></a>
+				}
+				else
+				{
+					<img src="@images.MediaParts[i].MediaUrl" alt="@images.MediaParts[i].AlternateText" class="center-image img-responsive" />
+				}
+            </div>
+        }
+    </div>
+</div>
